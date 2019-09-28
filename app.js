@@ -18,12 +18,12 @@ const users = require('./routes/users');
 require('./config/passport')(passport);
 
 // DB config
-const db = require('./config/database');
+// const db = require('./config/database');
 
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // Connect to mongoose
-mongoose.connect(db.mongoURI, {
+mongoose.connect("mongodb://roshan:9939105936@music-app-db-hexhh.mongodb.net/vidjot-prod?retryWrites=true&w=majority", {
   useMongoClient: true
 })
   .then(() => console.log('MongoDB Connected...'))
