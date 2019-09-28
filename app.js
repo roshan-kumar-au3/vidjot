@@ -7,6 +7,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
 
@@ -23,10 +24,13 @@ require('./config/passport')(passport);
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // Connect to mongoose
-mongoose.connect("mongodb://roshan:9939105936@music-app-db-hexhh.mongodb.net/vidjot-prod?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://roshan:<password>@music-app-db-hexhh.mongodb.net/?retryWrites=true&w=majority", {
   useMongoClient: true
 })
-  .then(() => console.log('MongoDB Connected...'))
+  .then(() => {
+    const db = client.db("vidjot-prod");
+    console.log('MongoDB Connected...');
+  })
   .catch(err => console.log(err));
 
 // Handlebars Middleware
