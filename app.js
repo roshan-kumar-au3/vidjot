@@ -24,11 +24,10 @@ require('./config/passport')(passport);
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // Connect to mongoose
-mongoose.connect("mongodb+srv://roshan:<password>@music-app-db-hexhh.mongodb.net/?retryWrites=true&w=majority", {
+mongoose.connect("mongodb://localhost:27017/vidjot-dev", {
   useMongoClient: true
 })
   .then(() => {
-    const db = client.db("vidjot-prod");
     console.log('MongoDB Connected...');
   })
   .catch(err => console.log(err));
